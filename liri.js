@@ -7,15 +7,18 @@ var spotify = require('node-spotify-api');
 //var spotify = require("spotify");
 var sourceKeys = require('./keys.js');
 
+//keys
 var spotify = new spotify(sourceKeys.spotify);
 var client = new Twitter(sourceKeys.twitter);
 
+//error variable for the fs which is required
 const cb = (err) => { if(err) console.error(err); }
 
+//user input
 var userCommand = process.argv[2];
 var userInput = process.argv[3];
 
-
+//switch case--user picks which function to run
 switch(userCommand){
     case "my-tweets":
         myTweets();
@@ -59,7 +62,7 @@ var params = {screen_name: 'Jenny88953142', count:'20'};
     });
 };
 
-//spotify
+//spotify function
 function spotifySong(songName){
 
     var songName = process.argv[3];
@@ -90,7 +93,7 @@ function spotifySong(songName){
     })
 }
     
-
+//omdb function
 function movieThis(title){
 
    if(title == null){
@@ -127,6 +130,7 @@ request(`http://www.omdbapi.com/?t=${title}&y=&plot=short&apikey=trilogy`, funct
 });
 }
 
+//function to read from text document
 function doWhat(){
 //readFile from text doc
 fs.readFile('random.txt', "utf8", function(error, data){
